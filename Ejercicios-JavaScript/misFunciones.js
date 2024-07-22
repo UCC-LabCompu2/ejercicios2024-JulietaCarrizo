@@ -185,3 +185,13 @@ function dibujarCiruloCuadrado(){
     ctx.fillStyle = "#436357";
     ctx.fill();
 }
+function dibujarImg(pos_x, pos_y) {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var img = new Image();
+    img.src = "images/auto.png";
+    canvas.width=canvas.width
+    img.onload = function () {
+        ctx.drawImage(img, pos_x, pos_y);
+    }
+}
