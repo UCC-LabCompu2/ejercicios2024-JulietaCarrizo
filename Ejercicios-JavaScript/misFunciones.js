@@ -121,13 +121,7 @@ let multiplica = () =>{
     document.getElementById("totalM").innerHTML=m1*m2;
 }
 
-function pasarValores(){
-    const distancia=document.getElementById("distancia").value;
-    const unidad=document.getElementById("unidades").value;
 
-    //window.open("segundaWeb.html#"+distancia+"#"+unidad); FORMA QUE NO SE USA MUCHO
-    window.open(segundaWeb.html#${distancia}#${unidad});
-}
 function cargarWeb(){
     var cant, unidad, urlComp;
 
