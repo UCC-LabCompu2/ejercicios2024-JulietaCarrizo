@@ -1,0 +1,24 @@
+div{
+    border: 2px solid rgba(11, 10, 10, 0.8);
+    margin: 10px 25px;
+    padding: 15px;
+    background-color: rgba(122, 122, 239, 0.2);
+    border-radius: 15px;
+    box-shadow: 4px 6px #7a8aac;
+}
+
+img{
+    float: left;
+    width: 118px;
+    border-radius: 50%;
+}
+
+.cvPrincipal{
+    text-align: center;
+    font-family: "Poetsen One", sans-serif;
+    background: linear-gradient(to right, #bcccf1, #b9b1d5);
+}
+
+#nombrePersona{
+    text-shadow: 2px 5px #54607e;
+}
