@@ -17,7 +17,7 @@ let convertirUnidades=(nombre, valor)=>{
         pie="";
         pulgada="";
         yarda="";
-        alert("El valor ingresado no es correcto")
+        alert("El valor ingresado no es correcto");
     }
     else if(nombre==="metro"){
         metro=valor;
@@ -57,16 +57,16 @@ function convertirGR(id){
     let grad,rad;
     //TODO: Agregar mensajes de error cuando se agregan letras.
     //TODO: Debería admitir números con coma.
-    if (id=="grados") {
+    if (id==="grados") {
         grad = document.getElementById("grados").value;
         rad = (grad * Math.PI) / 180;
         document.getElementById("radianes").value=rad;
     }
-        else if (id=="radianes"){
-            rad=document.getElementById("radianes").value;
-            grad=(rad*180)/Math.PI
+    else if (id==="radianes"){
+        rad=document.getElementById("radianes").value;
+        grad=(rad*180)/Math.PI
         document.getElementById("grados").value=grad;
-        }
+    }
 }
 
 /**
@@ -121,77 +121,95 @@ let multiplica = () =>{
     document.getElementById("totalM").innerHTML=m1*m2;
 }
 
+function pasarValores(){
+    const distancia=document.getElementById("distancia").value;
+    const unidad=document.getElementById("unidades").value;
 
-function cargarWeb(){
-    var cant, unidad, urlComp;
-
-    cant = document.getElementById("distancia").value;
-    unidad = document.getElementsByName("unidades")[0].value;
-
-    urlComp = "segundaWeb.html#" + cant + "#" + unidad;
-    window.open(urlComp, "_self");
+    window.open("segundaWeb.html#"+distancia+"#"+unidad);
+    /*window.open(segundaWeb.html #${distancia}#${unidad}); */
 }
-function cargarResul(){
-    var urlComp, cant, unidad;
-    urlComp = window.location.href.split("#");
-    cant = urlComp[1];
-    unidad = urlComp[2];
-    document.getElementById("dist").value = cant + " " + unidad;
-}
+
 function dibujarCuadriculado(){
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
-    var altraMax= canvas.height;
-    var anchoMax = canvas.width;
+
+    var alturaMax=canvas.height;
+    var anchoMax=canvas.width;
+
     ctx.beginPath();
-    for (var i=20;i<altraMax; i+=20) {
-        ctx.moveTo(0, i);
-        ctx.lineTo(1000, i);
-        ctx.strokeStyle = "#000000";
+   for(var i=0;i<alturaMax;){
+       ctx.moveTo(0,i);
+       ctx.lineTo(anchoMax,i);
+       ctx.strokeStyle = "rgba(167,185,232,0.71)";
+       ctx.stroke();
+       i=i+20;
+   }
+    ctx.closePath();
+
+    ctx.beginPath();
+    for(var i=0;i<anchoMax;){
+        ctx.moveTo(i,0);
+        ctx.lineTo(i,alturaMax);
+        ctx.strokeStyle = "rgba(167,185,232,0.71)";
         ctx.stroke();
+        i=i+20;
     }
     ctx.closePath();
+
+    //ejeX
     ctx.beginPath();
-    for (var i=20;i<anchoMax; i+=20) {
-        ctx.moveTo(i, 0);
-        ctx.lineTo(i, 600);
-        ctx.strokeStyle = "#000000";
-        ctx.stroke();
-    }
-    ctx.closePath();
-    ctx.beginPath();
-    ctx.moveTo(0, altraMax/2);
-    ctx.lineTo(anchoMax, altraMax/2);
-    ctx.strokeStyle = "#000000";
+    ctx.moveTo(0,alturaMax/2);
+    ctx.lineTo(anchoMax,alturaMax/2);
+    ctx.strokeStyle = "#d93e62";
     ctx.stroke();
     ctx.closePath();
+
+    //ejeY
     ctx.beginPath();
-    ctx.moveTo(anchoMax/2, 0);
-    ctx.lineTo(anchoMax/2, altraMax);
-    ctx.strokeStyle = "#000000";
+    ctx.moveTo(alturaMax/2,0);
+    ctx.lineTo(anchoMax/2,alturaMax);
+    ctx.strokeStyle = "#d93e62";
     ctx.stroke();
     ctx.closePath();
+
 }
-function dibujarCiruloCuadrado(){
+
+
+function dibujarImagen(posX, posY){
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
-    var yMax = canvas.height;
-    var xMax = canvas.width;
-    var margen =5;
-    ctx.fillStyle = "#992058";
-    ctx.fillRect(0 + margen,yMax - 40 - margen, 40, 40);
-    ctx.arc(xMax/2,yMax/2, 30, 0,2*Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = "#436357";
-    ctx.fill();
-}
-function dibujarImg(pos_x, pos_y) {
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
+
+    console.log(posX,posY);
+
     var img = new Image();
     img.src = "images/auto.png";
-    canvas.width=canvas.width
+
+    canvas.width = canvas.width;
+
     img.onload = function () {
-        ctx.drawImage(img, pos_x, pos_y);
+        ctx.drawImage(img,posX,posY);
     }
+}
+
+
+x=0;
+dx=2;
+
+function animarAuto(){
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    canvas.width = canvas.width;
+
+     var img = new Image();
+     img.src = "images/auto.png";
+
+     img.onload = function () {
+         ctx.drawImage(img,x,100)
+     }
+
+     if (x>canvas.width){
+         x=0;
+     }
+     x += dx;
 }
